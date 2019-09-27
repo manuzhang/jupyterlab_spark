@@ -1,5 +1,5 @@
 import {
-  JupyterLab, JupyterLabPlugin
+  JupyterFrontEnd, JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 
 import {IMainMenu} from '@jupyterlab/mainmenu'
@@ -20,7 +20,7 @@ namespace CommandIDs {
 /**
  * Initialization data for the jupyterlab-spark extension.
  */
-const extension: JupyterLabPlugin<void> = {
+const extension: JupyterFrontEndPlugin<void> = {
   id: 'jupyterlab_spark',
   autoStart: true,
   requires: [IMainMenu],
@@ -29,7 +29,7 @@ const extension: JupyterLabPlugin<void> = {
 
 export default extension;
 
-export function activate_custom_menu(app: JupyterLab, mainMenu: IMainMenu): Promise<void> {
+export function activate_custom_menu(app: JupyterFrontEnd, mainMenu: IMainMenu): Promise<void> {
   console.log('JupyterLab extension jupyterlab_spark is activated!');
 
   let namespace = 'spark-ui'
@@ -53,7 +53,7 @@ export function activate_custom_menu(app: JupyterLab, mainMenu: IMainMenu): Prom
         body: new InputAppIdWidget(),
         buttons: [Dialog.cancelButton(), Dialog.okButton({ label : 'CREATE'})]
       }).then(result => {
-        if (result.button.label = 'CREATE') {
+        if (result.button.label === 'CREATE') {
           const appId = <string>result.value;
           return app.commands.execute(CommandIDs.open, {appId: appId});
         } else {
@@ -69,7 +69,7 @@ export function activate_custom_menu(app: JupyterLab, mainMenu: IMainMenu): Prom
       let widget =  newWidget(url, 'Spark App UI');
       if (!widget.isAttached) {
         // Attach the widget to the main work area if it's not there
-        app.shell.addToMainArea(widget);
+        app.shell.add(widget, "main");
       }
       // Activate the widget
       app.shell.activateById(widget.id);
@@ -107,7 +107,7 @@ class InputAppIdWidget extends Widget {
 
 namespace Private {
 
-  export function createMenu(app: JupyterLab, label: string): Menu {
+  export function createMenu(app: JupyterFrontEnd, label: string): Menu {
     const {commands} = app;
     const menu = new Menu({ commands });
     menu.title.label = label;
