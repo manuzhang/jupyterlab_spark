@@ -1,4 +1,5 @@
 # jupyterlab_spark
+[![npm version](https://img.shields.io/npm/v/jupyterlab_spark?style=flat-square)](https://www.npmjs.com/package/jupyterlab_spark)
 
 A JupyterLab extension to show Spark Application UI in a JupyterLab panel
 
