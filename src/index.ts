@@ -4,12 +4,12 @@ import {
 
 import {IMainMenu} from '@jupyterlab/mainmenu'
 
-import {Menu} from '@phosphor/widgets'
+import {Menu} from '@lumino/widgets'
 
 import '../style/index.css';
 import { showDialog, Dialog, MainAreaWidget, IFrame } from '@jupyterlab/apputils';
 
-import { Widget } from '@phosphor/widgets';
+import { Widget } from '@lumino/widgets';
 
 namespace CommandIDs {
   export const input = "ui:input";
