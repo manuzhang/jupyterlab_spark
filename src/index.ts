@@ -36,7 +36,7 @@ export function activate_custom_menu(app: JupyterFrontEnd, mainMenu: IMainMenu):
   let counter = 0;
   
   function newWidget(url: string, text: string): MainAreaWidget {
-    let content = new IFrame();
+    let content = new IFrame({sandbox: ['allow-forms', 'allow-same-origin', 'allow-scripts']});
     content.url = url;
     content.title.label = text;
     content.id = `${namespace}-${++counter}`;
