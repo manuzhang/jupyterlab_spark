@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab_spark",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Show Spark Application UI in a JupyterLab panel",
   "keywords": [
     "jupyter",
